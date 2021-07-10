@@ -26,6 +26,7 @@ function captAmerCard(data) {
     var cardFigureEl = document.createElement('figure');
     cardFigureEl.setAttribute('class', "image is-4by3");
     var captAmerImageEl = document.createElement('img');
+    console.log(data);
     captAmerImageEl.setAttribute("src", data.thumbnail.path + "." + data.thumbnail.extension);
     cardFigureEl.append(captAmerImageEl);
     var cardMediaContentEl = document.createElement('div');
@@ -47,4 +48,3 @@ function captAmerCard(data) {
 
 }
 
-captAmerCard();
