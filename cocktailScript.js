@@ -16,7 +16,7 @@ var selectCocktail = function(){
         })
     });
     }
-
+    
 selectCocktail();
 
 //Takes cocktail ID and gets desired cocktail attributes.
