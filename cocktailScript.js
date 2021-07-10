@@ -24,21 +24,21 @@ var getCocktailName = function(cocktailID){
     var cocktailURL = ("https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + cocktailID);
     fetch(cocktailURL).then(function(response) {
         response.json().then(function(data){
-            //Create arrays containing just ingredients and measurements so for loop works.
-            let ingredientsArray = [data.drinks[0].strIngredient1, data.drinks[0].strIngredient2, data.drinks[0].strIngredient3, data.drinks[0].strIngredient4, data.drinks[0].strIngredient5, data.drinks[0].strIngredient6, data.drinks[0].strIngredient7, data.drinks[0].strIngredient8, data.drinks[0].strIngredient9, data.drinks[0].strIngredient10, data.drinks[0].strIngredient11, data.drinks[0].strIngredient12, data.drinks[0].strIngredient13, data.drinks[0].strIngredient14, data.drinks[0].strIngredient15]
-            let measureArray = [data.drinks[0].strMeasure1, data.drinks[0].strMeasure2, data.drinks[0].strMeasure3, data.drinks[0].strMeasure4, data.drinks[0].strMeasure5, data.drinks[0].strMeasure6, data.drinks[0].strMeasure7, data.drinks[0].strMeasure8, data.drinks[0].strMeasure9, data.drinks[0].strMeasure10, data.drinks[0].strMeasure11, data.drinks[0].strMeasure12, data.drinks[0].strMeasure13, data.drinks[0].strMeasure14, data.drinks[0].strMeasure15]
             //runs all functions to add data to html
             renderCocktailImage(data.drinks[0].strDrinkThumb);
             renderCocktailName(data.drinks[0].strDrink);
-            for (let i=0; i<ingredientsArray.length; i++) {
-                if (ingredientsArray[i]!==null) {
-                renderCocktailIngredients(measureArray[i],ingredientsArray[i]);}
-            };
+            for (let i=1; i<15; i++){
+                if (data.drinks[0]['strIngredient' + i]!==null){
+                    renderCocktailIngredients(data.drinks[0]['strMeasure' + i], data.drinks[0]['strIngredient' + i])
+                }
+            }
+
             renderCocktailInstructions(data.drinks[0].strInstructions);
         })
     })
 }
 
+//renders cocktail name
 var renderCocktailName = function(n) {
   var tag = document.createElement("div");
   tag.classList.add('title'); 
@@ -48,6 +48,7 @@ var renderCocktailName = function(n) {
   element.appendChild(tag);
 }
 
+//renders cocktail instructions
 var renderCocktailInstructions = function(n) {
     var tag = document.createElement("div");
     tag.classList.add('content');
@@ -57,6 +58,7 @@ var renderCocktailInstructions = function(n) {
     element.appendChild(tag);
 }
 
+//renders cocktail image
 var renderCocktailImage = function(n) {
     var img = document.createElement("img");
     img.classList.add('card-image');
@@ -65,9 +67,23 @@ var renderCocktailImage = function(n) {
     element.appendChild(img);
 }
 
+//renders cocktail measurements if there is one and ingredients
 var renderCocktailIngredients = function(a, b) {
+    if (a===null) {
+        var tag = document.createElement("ul");
+        var ingredient = document.createTextNode(b);
+        tag.appendChild(ingredient);
+        
+        var div = document.createElement("div")
+        div.classList.add('card-content');
+        div.appendChild(tag);
+    
+        var element = document.getElementById("cocktailCard");
+        element.appendChild(tag);
+
+    } else {
     var tag = document.createElement("ul");
-    var ingredient = document.createTextNode(a + " " + b);
+    var ingredient = document.createTextNode(a+" "+b);
     tag.appendChild(ingredient);
     
     var div = document.createElement("div")
@@ -76,4 +92,5 @@ var renderCocktailIngredients = function(a, b) {
 
     var element = document.getElementById("cocktailCard");
     element.appendChild(tag);
+    }
 }
