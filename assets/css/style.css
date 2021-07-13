@@ -14,3 +14,7 @@
     width: 1000px;
 }
 
+#avengersLogo {
+    border-radius: 20px;
+    box-shadow: 10px 0px 5px #000;;
+}
