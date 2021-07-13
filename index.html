@@ -23,10 +23,9 @@
           <p class="level-item has-text-centered">
             <a class="link is-info" style="color: white;">CAPTAIN AMERICA</a>
           </p>
-          <p class="level-item has-text-centered">
-            <img id="avengersLogo" alt="AVENGERS " style="height: 30px;">
-            <!-- <h1 class="title" style="color: ghostwhite;">AVENGERS <br> THEMED <br> COCKTAILS</h1> -->
-          </p>
+          <a class="level-item has-text-centered">
+            <img id="avengersLogo" alt="AVENGERS " style="height: 90px;">
+          </a>
           <p class="level-item has-text-centered">
             <a class="link is-info" style="color: white;">HULK</a>
           </p>
@@ -38,28 +37,18 @@
 
     <div class="container">
       <div class="section">
-        <!-- <div class="columns" id="titleBackground">
-          <div class="column has-text-centered">
-            <h1 class="title" style="color: ghostwhite;">AVENGERS THEMED COCKTAILS</h1><br>
-          </div>
-        </div> -->
         <div id="app" class="row columns is-multiline">
           <div v-for="card in cardData" key="card.id" class="column is-4">
             <div id="characterCard"></div>
           </div>
-          <div class="card column is-one-third" id="cocktailCard"></div>
+          <div v-for="card in cardData" key="card.id" class="column is-7">
+            <div id="cocktailCard"></div>
         </div>
       </div>
     </div>
     <footer class="footer">
       <div class="container">
         <div class="content has-text-centered">
-          <div class="soc">
-            <a href="#"><i class="fa fa-github-alt fa-lg" aria-hidden="true"></i></a>
-            <a href="#"><i class="fa fa-youtube fa-lg" aria-hidden="true"></i></a>
-            <a href="#"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a>
-            <a href="#"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a>
-          </div>
           <p>
             <strong>Bulma</strong> by <a href="http://jgthms.com">Jeremy Thomas</a>.
             The source code is licensed <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. <br>
@@ -69,6 +58,7 @@
     </footer>
 
     <script src="cocktailScript.js"></script>
+    <script src="./js/charactercard.js"></script>
 
   </body>
 
