@@ -22,4 +22,27 @@
 #homepage {
     font-family: "Marvel Regular";
     src: url("Marvel-Regular.ttf") format('truetype');
+   padding: 30px;
+   background-size: cover;
+    background-image: url("./usa_avengers_herob_characters_n_268b09c9.webp");
+}
+
+.introtext {
+display: flex;
+flex-direction: row;
+}
+
+.introtextcontent {
+width: 50%;
+display: flex; 
+color: white;
+}
+
+#header {
+    color: white;
+    font-size: 180%;
+}
+
+.level {
+    margin-bottom: 0 !important;
 }
