@@ -18,3 +18,8 @@
     border-radius: 20px;
     box-shadow: 10px 0px 5px #000;;
 }
+
+#homepage {
+    font-family: "Marvel Regular";
+    src: url("Marvel-Regular.ttf") format('truetype');
+}

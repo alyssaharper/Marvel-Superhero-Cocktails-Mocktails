@@ -31,4 +31,3 @@ var renderCocktailName = function(r) {
     h1.textContent = r;
     body.push(h1)
 }
-
