@@ -5,120 +5,57 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Cards List - Bulma Templates</title>
+    <title>Superhero Cocktails</title>
     <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
+    <link rel="stylesheet" href="./assets/css/style.css">
     <script src="https://kit.fontawesome.com/7dc3015a44.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <link rel="stylesheet" href="../css/cards.css">
+    <link rel="stylesheet" href="">
   </head>
 
   <body>
 
-    <!-- START NAV -->
-    <nav class="navbar">
-      <div class="container">
-        <div class="navbar-brand">
-          <a class="navbar-item" href="#">
-            <img src="https://cdn.emk.dev/templates/bulma-logo-light.png" alt="Logo">
+  
+        <nav class="level"id="titleBackground">
+          <p class="level-item has-text-centered">
+            <a class="link is-info" id="BLACKWIDOW" data-attribute="black widow" data-ingredient="vodka" style="color: white;">BLACK WIDOW</a>
+          </p>
+          <p class="level-item has-text-centered">
+            <a class="link is-info" id="CAPTAINAMERICA" data-attribute="captain america" data-ingredient="apple" style="color: white;">CAPTAIN AMERICA</a>
+          </p>
+          <a class="level-item has-text-centered">
+            <img id="avengersLogo" alt="AVENGERS " style="height: 90px;">
           </a>
-          <span class="navbar-burger burger" data-target="navbarMenu">
-            <span></span>
-            <span></span>
-            <span></span>
-          </span>
-        </div>
-        <div id="navbarMenu" class="navbar-menu">
-          <div class="navbar-end">
-            <a class="navbar-item is-active">
-              Home
-            </a>
-            <a class="navbar-item">
-              Black Widow
-            </a>
-            <a class="navbar-item">
-              Captain America
-            </a>
-            <a class="navbar-item">
-              Incredible Hulk
-            </a>
-            <a class="navbar-item">
-              Spiderman
-            </a>
-          </div>
-        </div>
-      </div>
-    </nav>
-    <!-- END NAV -->
+          <p class="level-item has-text-centered">
+            <a class="link is-info" id="HULK" data-attribute="hulk" data-ingredient="lime" style="color: white;">HULK</a>
+          </p>
+          <p class="level-item has-text-centered">
+            <a class="link is-info" id="SPIDERMAN" data-attribute="spider-man (peter parker)" data-ingredient="grenadine" style="color: white;">SPIDERMAN</a>
+          </p>
+        </nav>
+
+        <h1>Welcome to the Cocktail Party!</h1>
+        <p>
+          A marvel cocktail party. Where all of your superheros come to life all in the form of sweet and tangy cocktails. 
+        </p>
+
+
 
     <div class="container">
       <div class="section">
-        <div class="columns">
-          <div class="column has-text-centered">
-            <h1 class="title" style="color: ghostwhite;">Bulma Card Layout Template</h1><br>
-          </div>
-        </div>
         <div id="app" class="row columns is-multiline">
           <div v-for="card in cardData" key="card.id" class="column is-4">
-            <div class="card large">
-              <div class="card-image">
-                <figure class="image is-16by9">
-                  <img :src="card.image" alt="Image">
-                </figure>
-              </div>
-              <div class="card-content">
-                <div class="media">
-                  <div class="media-left">
-                    <figure class="image is-48x48">
-                      <img :src="card.avatar" alt="Image">
-                    </figure>
-                  </div>
-                  <div class="media-content">
-                    <p class="title is-4 no-padding">{{card.user.title}}</p>
-                    <p>
-                      <span class="title is-6">
-                        <a :href=`http://twitter.com/${card.user.handle}`> {{card.user.handle}} </a> </span> </p>
-                    <p class="subtitle is-6">{{card.user.title}}</p>
-                  </div>
-                </div>
-                <div class="content">
-                  {{card.content}}
-                  <div class="background-icon"><span class="icon-twitter"></span></div>
-                </div>
-              </div>
-            </div>
+            <div id="characterCard"></div>
           </div>
+          <div v-for="card in cardData" key="card.id" class="column is-7">
+            <div id="cocktailCard"></div>
         </div>
       </div>
     </div>
-    <footer class="footer">
-      <div class="container">
-        <div class="content has-text-centered">
-          <div class="soc">
-            <a href="#"><i class="fa fa-github-alt fa-lg" aria-hidden="true"></i></a>
-            <a href="#"><i class="fa fa-youtube fa-lg" aria-hidden="true"></i></a>
-            <a href="#"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a>
-            <a href="#"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a>
-          </div>
-          <p>
-            <strong>Bulma</strong> by <a href="http://jgthms.com">Jeremy Thomas</a>.
-            The source code is licensed <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. <br>
-          </p>
-        </div>
-      </div>
-    </footer>
 
-    <script src="../js/cardsData.js"></script>
+    <script src="./assets/js/charactercard.js"></script>
+    <script src="./assets/js/cocktailScript.js"></script>
 
-    <!-- Using Vue to populate cards to reduce redundant code -->
-    <script>
-      var app = new Vue({
-        el: '#app',
-        data: {
-          cardData: cardsData
-        }
-      })
-
-    </script>
   </body>
 
 </html>
