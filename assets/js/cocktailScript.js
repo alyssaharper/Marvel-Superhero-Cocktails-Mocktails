@@ -1,6 +1,6 @@
 var body = document.querySelector("#body")
 // Ingrdient will be a varaible affected by user selected character.
-//let selectIngredient = 'lime_juice';
+let selectIngredient = '';
 let cmon = 'lemme';
 //Function to get random cocktail ID based on selected ingredient
 var selectCocktail = function(ingredientHere){

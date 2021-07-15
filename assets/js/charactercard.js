@@ -1,5 +1,5 @@
-var publickey = "af4ef82dfc5efae7a724a9ccead1a2be"
-var characterName = "captain america"
+var publickey = "af4ef82dfc5efae7a724a9ccead1a2be";
+var characterName = "";
 var characterAPI = "https://gateway.marvel.com/v1/public/characters?name=" + characterName + "&ts=thesoer&apikey=001ac6c73378bbfff488a36141458af2&hash=72e5ed53d1398abb831c3ceec263f18b"
 var avengerAPI = "https://gateway.marvel.com/v1/public/characters/1009165?&ts=thesoer&apikey=001ac6c73378bbfff488a36141458af2&hash=72e5ed53d1398abb831c3ceec263f18b"
 //var captainAmericaAPI = "https://gateway.marvel.com/v1/public/characters?name=captain america&ts=thesoer&apikey=001ac6c73378bbfff488a36141458af2&hash=72e5ed53d1398abb831c3ceec263f18b"
@@ -9,29 +9,29 @@ var characterCardEl = document.getElementById('characterCard');
 var avengersLogoEl = document.getElementById('avengersLogo');
 
 function createHeroCards() {
-}
-window.onload = function() {
-    console.log("onwindowload")
     fetch (characterAPI)
-.then ((response)=>{
-   return response.json()
-})
-.then((data)=>{
-    characterData = data.data.results[0]
-    console.log(characterData);
-    characterCard(characterData);
-})
-fetch (avengerAPI)
-.then ((response)=>{
-   return response.json()
-})
-.then((data)=>{
-    avengerData = data.data.results[0]
-    // console.log(avengerData);
-    getMarvelIcon(avengerData);
-})
+    .then ((response)=>{
+       return response.json()
+    })
+    .then((data)=>{
+        characterData = data.data.results[0]
+        console.log(characterData);
+        characterCard(characterData);
+    })
 }
-createHeroCards()
+
+    window.onload = function() {
+        // console.log("onwindowload")    
+    fetch (avengerAPI)
+    .then ((response)=>{
+       return response.json()
+    })
+    .then((data)=>{
+        avengerData = data.data.results[0]
+        // console.log(avengerData);
+        getMarvelIcon(avengerData);
+    })
+    }
 
 function characterCard(data) {
 
@@ -71,3 +71,9 @@ function getMarvelIcon(data) {
 avengersLogoEl.setAttribute("src", data.thumbnail.path + "." + data.thumbnail.extension);
 
 }
+
+
+// $(".link").on('click', function(){
+// var characterName = $(this).dataset.attribute;
+// createHeroCards();
+// })
