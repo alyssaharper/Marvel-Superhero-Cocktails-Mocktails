@@ -20,6 +20,7 @@
 }
 
 #homepage {
+    /* height: 50rem; */
     font-family: "Marvel Regular";
     src: url("Marvel-Regular.ttf") format('truetype');
    padding: 30px;
@@ -36,6 +37,7 @@ flex-direction: row;
 width: 50%;
 display: flex; 
 color: white;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 #header {
