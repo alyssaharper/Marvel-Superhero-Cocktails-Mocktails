@@ -1,6 +1,4 @@
 var publickey = "af4ef82dfc5efae7a724a9ccead1a2be";
-var characterName = "";
-var characterAPI = "https://gateway.marvel.com/v1/public/characters?name=" + characterName + "&ts=thesoer&apikey=001ac6c73378bbfff488a36141458af2&hash=72e5ed53d1398abb831c3ceec263f18b"
 var avengerAPI = "https://gateway.marvel.com/v1/public/characters/1009165?&ts=thesoer&apikey=001ac6c73378bbfff488a36141458af2&hash=72e5ed53d1398abb831c3ceec263f18b"
 //var captainAmericaAPI = "https://gateway.marvel.com/v1/public/characters?name=captain america&ts=thesoer&apikey=001ac6c73378bbfff488a36141458af2&hash=72e5ed53d1398abb831c3ceec263f18b"
 var characterData
@@ -8,7 +6,10 @@ var avengerData
 var characterCardEl = document.getElementById('characterCard');
 var avengersLogoEl = document.getElementById('avengersLogo');
 
-function createHeroCards() {
+function createHeroCards(name) {
+var characterName = name;
+var characterAPI = "https://gateway.marvel.com/v1/public/characters?name=" + characterName + "&ts=thesoer&apikey=001ac6c73378bbfff488a36141458af2&hash=72e5ed53d1398abb831c3ceec263f18b"
+
     fetch (characterAPI)
     .then ((response)=>{
        return response.json()
@@ -77,3 +78,38 @@ avengersLogoEl.setAttribute("src", data.thumbnail.path + "." + data.thumbnail.ex
 // var characterName = $(this).dataset.attribute;
 // createHeroCards();
 // })
+var bwcharClick = document.getElementById('BLACKWIDOW');
+bwcharClick.addEventListener("click", function() {
+    while(characterCardEl.firstChild){
+        characterCardEl.removeChild(characterCardEl.firstChild);
+    } 
+    console.log();
+    createHeroCards('black widow')
+})
+
+var cacharClick = document.getElementById('CAPTAINAMERICA');
+cacharClick.addEventListener("click", function() {
+    while(characterCardEl.firstChild){
+        characterCardEl.removeChild(characterCardEl.firstChild);
+    } 
+    console.log();
+    createHeroCards('captain america')
+})
+
+var hucharClick = document.getElementById('HULK');
+hucharClick.addEventListener("click", function() {
+    while(characterCardEl.firstChild){
+        characterCardEl.removeChild(characterCardEl.firstChild);
+    } 
+    console.log();
+    createHeroCards('hulk')
+})
+
+var spcharClick = document.getElementById('SPIDERMAN');
+spcharClick.addEventListener("click", function() {
+    while(characterCardEl.firstChild){
+        characterCardEl.removeChild(characterCardEl.firstChild);
+    } 
+    console.log();
+    createHeroCards('spider-man (peter parker)')
+})
