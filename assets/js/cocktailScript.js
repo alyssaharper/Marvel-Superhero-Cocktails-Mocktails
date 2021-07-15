@@ -1,4 +1,5 @@
 var body = document.querySelector("#body")
+var cocktailCardEl = document.getElementById('cocktailCard');
 // Ingrdient will be a varaible affected by user selected character.
 let selectIngredient = '';
 let cmon = 'lemme';
@@ -135,6 +136,9 @@ if (localStorage.getItem("history")){
 // Add event listeners for clicks on superhero names
 let bwClick = document.getElementById("BLACKWIDOW");
 bwClick.addEventListener("click", function(){
+    while(cocktailCardEl.firstChild){
+        cocktailCardEl.removeChild(cocktailCardEl.firstChild);
+    } 
     console.log("Black widow clicked.");
     selectCocktail("vodka");
     //showCharacter("Black Widow");
@@ -142,18 +146,27 @@ bwClick.addEventListener("click", function(){
 
 let caClick = document.getElementById("CAPTAINAMERICA");
 caClick.addEventListener("click", function(){
+    while(cocktailCardEl.firstChild){
+        cocktailCardEl.removeChild(cocktailCardEl.firstChild);
+    }
     console.log("Captain america clicked.");
     selectCocktail("apple");
 });
 
 let huClick = document.getElementById("HULK");
 huClick.addEventListener("click", function(){
+    while(cocktailCardEl.firstChild){
+        cocktailCardEl.removeChild(cocktailCardEl.firstChild);
+    }
     console.log("Hulk clicked.");
     selectCocktail("lime");
 });
 
 let smClick = document.getElementById("SPIDERMAN");
 smClick.addEventListener("click", function(){
+    while(cocktailCardEl.firstChild){
+        cocktailCardEl.removeChild(cocktailCardEl.firstChild);
+    }
     console.log("Spider man clicked.");
     selectCocktail("grenadine");
 });
