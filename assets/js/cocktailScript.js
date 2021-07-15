@@ -1,6 +1,6 @@
 var body = document.querySelector("#body")
 // Ingrdient will be a varaible affected by user selected character.
-let selectIngredient = 'lime_juice';
+//let selectIngredient = 'lime_juice';
 let cmon = 'lemme';
 //Function to get random cocktail ID based on selected ingredient
 var selectCocktail = function(ingredientHere){
@@ -17,11 +17,12 @@ var selectCocktail = function(ingredientHere){
     });
 }
 
-selectCocktail(selectIngredient);
+//selectCocktail(selectIngredient);
 
 //Takes cocktail ID and gets desired cocktail attributes.
 var getCocktailName = function(cocktailID){
     var cocktailURL = ("https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + cocktailID);
+    console.log("Get cocktail name for cocktail ID: " + cocktailID)
     fetch(cocktailURL).then(function(response) {
         response.json().then(function(data){
         //runs all functions to add data to html
@@ -120,3 +121,30 @@ var historyArr = [];
 if (localStorage.getItem("history")){
     historyArr = JSON.parse(localStorage.getItem("history"))
 }
+
+// Add event listeners for clicks on superhero names
+let bwClick = document.getElementById("BLACKWIDOW");
+bwClick.addEventListener("click", function(){
+    console.log("Black widow clicked.");
+    selectCocktail("vodka");
+    //showCharacter("Black Widow");
+});
+
+let caClick = document.getElementById("CAPTAINAMERICA");
+caClick.addEventListener("click", function(){
+    console.log("Captain america clicked.");
+    selectCocktail("apple");
+});
+
+let huClick = document.getElementById("HULK");
+huClick.addEventListener("click", function(){
+    console.log("Hulk clicked.");
+    selectCocktail("lime");
+});
+
+let smClick = document.getElementById("SPIDERMAN");
+smClick.addEventListener("click", function(){
+    console.log("Spider man clicked.");
+    selectCocktail("grenadine");
+});
+
