@@ -1,7 +1,7 @@
 var body = document.querySelector("#body")
 // Ingrdient will be a varaible affected by user selected character.
-var ingredient = 'lime_juice';
-
+let selectIngredient = 'lime_juice';
+let cmon = 'lemme';
 //Function to get random cocktail ID based on selected ingredient
 var selectCocktail = function(ingredientHere){
     var cocktailQueryURL = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=" + ingredientHere;
@@ -12,12 +12,12 @@ var selectCocktail = function(ingredientHere){
             //Gets random number based on available drinks
             var rndNum = Math.floor(Math.random() * (data.drinks.length))
             //Pulls random cocktail ID
-            getCocktailName(data.drinks[rndNum].idDrink, ingredient);
+            getCocktailName(data.drinks[rndNum].idDrink);
         })
     });
 }
 
-selectCocktail(ingredient);
+selectCocktail(selectIngredient);
 
 //Takes cocktail ID and gets desired cocktail attributes.
 var getCocktailName = function(cocktailID){
@@ -102,9 +102,10 @@ var getCocktailName = function(cocktailID){
             saveBtn.addEventListener("click", saveToLocal);
 
             function saveToLocal(){
+                console.log(selectIngredient);
                 var newObj = {
-                    heroName: 'something',
-                    drinkID:  (cocktailID)
+                    heroName: selectIngredient,
+                    drinkID:  cocktailID
                 }
             
                 historyArr.push(newObj)
