@@ -1,10 +1,10 @@
 var body = document.querySelector("#body")
 // Ingrdient will be a varaible affected by user selected character.
-var ingredient = "lime_juice";
-
+let selectIngredient = 'lime_juice';
+let cmon = 'lemme';
 //Function to get random cocktail ID based on selected ingredient
-var selectCocktail = function(){
-    var cocktailQueryURL = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=" + ingredient;
+var selectCocktail = function(ingredientHere){
+    var cocktailQueryURL = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=" + ingredientHere;
     
 
     fetch(cocktailQueryURL).then(function(response) {
@@ -15,82 +15,108 @@ var selectCocktail = function(){
             getCocktailName(data.drinks[rndNum].idDrink);
         })
     });
-    }
-    
-selectCocktail();
+}
+
+selectCocktail(selectIngredient);
 
 //Takes cocktail ID and gets desired cocktail attributes.
 var getCocktailName = function(cocktailID){
     var cocktailURL = ("https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + cocktailID);
     fetch(cocktailURL).then(function(response) {
         response.json().then(function(data){
-            //runs all functions to add data to html
-            renderCocktailImage(data.drinks[0].strDrinkThumb);
-            renderCocktailName(data.drinks[0].strDrink);
+        //runs all functions to add data to html
+
+            //renders cocktail image
+            var img = document.createElement("img");
+            img.classList.add('card-image');
+            img.width = 300;
+            img.height = 300;
+            img.src = (data.drinks[0].strDrinkThumb);
+
+            var divcard = document.createElement("div")
+            divcard.classList.add('card');
+            divcard.appendChild(img);
+            
+            
+            //renders cocktail name
+            var cocktailTitle = document.createElement("h1");
+            cocktailTitle.setAttribute('class', 'title is-4'); 
+            // var text = document.createTextNode(data.drinks[0].strDrink); 
+            // cocktailTitle.appendChild(text); 
+            cocktailTitle.textContent = data.drinks[0].strDrink
+            divcard.appendChild(cocktailTitle);
+            var element = document.getElementById("cocktailCard");
+            // var element = document.getElementById("cocktailCard");
+            // element.appendChild(tag);
+            var cocktailInstructions = document.createElement("p");
+            cocktailInstructions.classList.add('cocktailInstructions');
+            var text = document.createTextNode(data.drinks[0].strInstructions); 
+            cocktailInstructions.appendChild(text); 
+
+            var cocktailCardContent = document.createElement("div");
+            cocktailCardContent.classList.add('cocktailCardContent');
+            cocktailCardContent.appendChild(cocktailTitle);
+            
+            
+            // renders cocktail measurements and ingredients
             for (let i=1; i<15; i++){
+                //checks to see if an ingredient exists, if it does the loop runs
                 if (data.drinks[0]['strIngredient' + i]!==null){
-                    renderCocktailIngredients(data.drinks[0]['strMeasure' + i], data.drinks[0]['strIngredient' + i])
+                    //if theres no measurement, only render intredient
+                    if ((data.drinks[0]['strMeasure' + i])===null) {
+                        var tag = document.createElement("ul");
+                        var ingredient = document.createTextNode(data.drinks[0]['strIngredient' + i]);
+                        tag.appendChild(ingredient);
+                        
+                        // var div = document.createElement("div")
+                        // div.classList.add('card-content');
+                        cocktailCardContent.appendChild(tag);
+                        
+                        // var element = document.getElementById("cocktailCard");
+                        // divcard.appendChild(tag);
+                        
+                    } else {
+                        //if there is a measurement. render measurement and ingredient
+                        var tag = document.createElement("ul");
+                        var ingredient = document.createTextNode((data.drinks[0]['strMeasure' + i])+" "+(data.drinks[0]['strIngredient' + i]));
+                        tag.appendChild(ingredient);
+                        
+                        // var div = document.createElement("div")
+                        // div.classList.add('card-content');
+                        cocktailCardContent.appendChild(tag);
+                        
+                        // var element = document.getElementById("cocktailCard");
+                        // divcard.appendChild(tag);
+                    }
                 }
             }
+            cocktailCardContent.appendChild(cocktailInstructions);
+            divcard.appendChild(cocktailCardContent);
+            
+            var saveBtn = document.createElement("button");
+            saveBtn.setAttribute('class', 'button')
+            saveBtn.textContent='save';
+            cocktailCardContent.appendChild(saveBtn);
+            element.appendChild(divcard);
 
-            renderCocktailInstructions(data.drinks[0].strInstructions);
+            saveBtn.addEventListener("click", saveToLocal);
+
+            function saveToLocal(){
+                console.log(selectIngredient);
+                var newObj = {
+                    heroName: selectIngredient,
+                    drinkID:  cocktailID
+                }
+            
+                historyArr.push(newObj)
+                localStorage.setItem("history", JSON.stringify(historyArr))
+            }
+
         })
     })
 }
 
-//renders cocktail name
-var renderCocktailName = function(n) {
-  var tag = document.createElement("div");
-  tag.classList.add('title'); 
-  var text = document.createTextNode(n); 
-  tag.appendChild(text); 
-  var element = document.getElementById("cocktailCard");
-  element.appendChild(tag);
-}
-
-//renders cocktail instructions
-var renderCocktailInstructions = function(n) {
-    var tag = document.createElement("div");
-    tag.classList.add('content');
-    var text = document.createTextNode(n); 
-    tag.appendChild(text); 
-    var element = document.getElementById("cocktailCard");
-    element.appendChild(tag);
-}
-
-//renders cocktail image
-var renderCocktailImage = function(n) {
-    var img = document.createElement("img");
-    img.classList.add('card-image');
-    img.src = n;
-    var element = document.getElementById("cocktailCard");
-    element.appendChild(img);
-}
-
-//renders cocktail measurements if there is one and ingredients
-var renderCocktailIngredients = function(a, b) {
-    if (a===null) {
-        var tag = document.createElement("ul");
-        var ingredient = document.createTextNode(b);
-        tag.appendChild(ingredient);
-        
-        var div = document.createElement("div")
-        div.classList.add('card-content');
-        div.appendChild(tag);
-    
-        var element = document.getElementById("cocktailCard");
-        element.appendChild(tag);
-
-    } else {
-    var tag = document.createElement("ul");
-    var ingredient = document.createTextNode(a+" "+b);
-    tag.appendChild(ingredient);
-    
-    var div = document.createElement("div")
-    div.classList.add('card-content');
-    div.appendChild(tag);
-
-    var element = document.getElementById("cocktailCard");
-    element.appendChild(tag);
-    }
+var historyArr = [];
+if (localStorage.getItem("history")){
+    historyArr = JSON.parse(localStorage.getItem("history"))
 }
