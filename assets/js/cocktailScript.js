@@ -113,6 +113,16 @@ var getCocktailName = function(cocktailID){
                 localStorage.setItem("history", JSON.stringify(historyArr))
             }
 
+            var closeBtn = document.createElement("button");
+            closeBtn.setAttribute('class', 'button')
+            closeBtn.textContent='x';
+            cocktailCardContent.appendChild(closeBtn);
+            element.appendChild(divcard);
+
+            closeBtn.addEventListener("click", hideCard);
+            function hideCard(){
+                element.removeChild(divcard);
+            }
         })
     })
 }
