@@ -1,0 +1,54 @@
+@font-face {
+    font-family: "Marvel Regular";
+    src: url("Marvel-Regular.ttf") format('truetype');
+}
+
+#titleBackground {
+    background-color: #ED1D24;
+    font-family: 'Marvel Regular';
+    font-size: 30px;
+}
+
+#cocktailCard {
+    height: 300px;
+    width: 1000px;
+}
+
+#avengersLogo {
+    border-radius: 20px;
+    box-shadow: 10px 0px 5px #000;;
+}
+
+#homepage {
+    /* height: 50rem; */
+    font-family: "Marvel Regular";
+    src: url("Marvel-Regular.ttf") format('truetype');
+   padding: 30px;
+   background-size: cover;
+    background-image: url("./usa_avengers_herob_characters_n_268b09c9.webp");
+}
+
+.introtext {
+display: flex;
+flex-direction: row;
+}
+
+.introtextcontent {
+width: 50%;
+display: flex; 
+color: white;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#header {
+    color: white;
+    font-size: 180%;
+}
+
+.level {
+    margin-bottom: 0 !important;
+}
+
+h3 {
+    color: white;
+}
