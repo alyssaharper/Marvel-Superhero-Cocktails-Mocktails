@@ -16,7 +16,7 @@ var characterAPI = "https://gateway.marvel.com/v1/public/characters?name=" + cha
     })
     .then((data)=>{
         characterData = data.data.results[0]
-        console.log(characterData);
+        // console.log(characterData);
         characterCard(characterData);
     })
 }
@@ -67,17 +67,10 @@ function characterCard(data) {
 
 
 function getMarvelIcon(data) {
-    console.log('test');
-    console.log(data);
 avengersLogoEl.setAttribute("src", data.thumbnail.path + "." + data.thumbnail.extension);
 
 }
 
-
-// $(".link").on('click', function(){
-// var characterName = $(this).dataset.attribute;
-// createHeroCards();
-// })
 var bwcharClick = document.getElementById('BLACKWIDOW');
 bwcharClick.addEventListener("click", function() {
     while(characterCardEl.firstChild){

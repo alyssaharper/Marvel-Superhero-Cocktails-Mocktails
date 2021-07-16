@@ -2,7 +2,7 @@ var body = document.querySelector("#body")
 var cocktailCardEl = document.getElementById('cocktailCard');
 // Ingrdient will be a varaible affected by user selected character.
 let selectIngredient = '';
-let cmon = 'lemme';
+
 //Function to get random cocktail ID based on selected ingredient
 var selectCocktail = function(ingredientHere){
     var cocktailQueryURL = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=" + ingredientHere;
@@ -23,7 +23,7 @@ var selectCocktail = function(ingredientHere){
 //Takes cocktail ID and gets desired cocktail attributes.
 var getCocktailName = function(cocktailID){
     var cocktailURL = ("https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + cocktailID);
-    console.log("Get cocktail name for cocktail ID: " + cocktailID)
+    // console.log("Get cocktail name for cocktail ID: " + cocktailID)
     fetch(cocktailURL).then(function(response) {
         response.json().then(function(data){
         //runs all functions to add data to html
@@ -92,6 +92,7 @@ var getCocktailName = function(cocktailID){
                     }
                 }
             }
+
             cocktailCardContent.appendChild(cocktailInstructions);
             divcard.appendChild(cocktailCardContent);
             
@@ -104,25 +105,13 @@ var getCocktailName = function(cocktailID){
             saveBtn.addEventListener("click", saveToLocal);
 
             function saveToLocal(){
-                console.log(selectIngredient);
+                // console.log(selectIngredient);
                 var newObj = {
-                    heroName: selectIngredient,
                     drinkID:  cocktailID
                 }
             
                 historyArr.push(newObj)
                 localStorage.setItem("history", JSON.stringify(historyArr))
-            }
-
-            var closeBtn = document.createElement("button");
-            closeBtn.setAttribute('class', 'button')
-            closeBtn.textContent='x';
-            cocktailCardContent.appendChild(closeBtn);
-            element.appendChild(divcard);
-
-            closeBtn.addEventListener("click", hideCard);
-            function hideCard(){
-                element.removeChild(divcard);
             }
         })
     })
@@ -139,7 +128,7 @@ bwClick.addEventListener("click", function(){
     while(cocktailCardEl.firstChild){
         cocktailCardEl.removeChild(cocktailCardEl.firstChild);
     } 
-    console.log("Black widow clicked.");
+    // console.log("Black widow clicked.");
     selectCocktail("vodka");
     //showCharacter("Black Widow");
 });
@@ -149,8 +138,8 @@ caClick.addEventListener("click", function(){
     while(cocktailCardEl.firstChild){
         cocktailCardEl.removeChild(cocktailCardEl.firstChild);
     }
-    console.log("Captain america clicked.");
-    selectCocktail("apple");
+    // console.log("Captain america clicked.");
+    selectCocktail("bourbon");
 });
 
 let huClick = document.getElementById("HULK");
@@ -158,7 +147,7 @@ huClick.addEventListener("click", function(){
     while(cocktailCardEl.firstChild){
         cocktailCardEl.removeChild(cocktailCardEl.firstChild);
     }
-    console.log("Hulk clicked.");
+    // console.log("Hulk clicked.");
     selectCocktail("lime");
 });
 
@@ -167,7 +156,23 @@ smClick.addEventListener("click", function(){
     while(cocktailCardEl.firstChild){
         cocktailCardEl.removeChild(cocktailCardEl.firstChild);
     }
-    console.log("Spider man clicked.");
+    // console.log("Spider man clicked.");
     selectCocktail("grenadine");
+});
+
+let homebtn = document.getElementById("avengersLogo");
+homebtn.addEventListener("click", function(){
+    // console.log("hello");
+    while(cocktailCardEl.firstChild){
+        cocktailCardEl.removeChild(cocktailCardEl.firstChild);
+    }
+    while(characterCardEl.firstChild){
+        characterCardEl.removeChild(characterCardEl.firstChild);
+    }
+    if (JSON.parse(localStorage.getItem("history"))) {
+        for (var i = 0; i<(JSON.parse(localStorage.getItem("history")).length); i++) {
+               getCocktailName(JSON.parse(localStorage.getItem("history"))[i].drinkID)
+               }
+       }
 });
 
